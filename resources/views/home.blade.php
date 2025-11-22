@@ -9,7 +9,7 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Selamat datang admin website!
+                            <h5 class="card-title text-primary">Selamat datang di halaman Dashboard UTS PPWL
                             </h5>
                             <p class="mb-4">
                                 selamat bekerja <span class="fw-bold"></span> nikmati harimu
@@ -32,11 +32,6 @@
                 </div>
             </div>
         </div>
-
-        <h3 class="card-title text-nowrap mb-1">$4,679</h3>
-        <small class="text-success fw-semibold">
-            <i class="bx bx-up-arrow-alt"></i> +28.42%
-        </small>
     </div>
 </div>
 </div>
