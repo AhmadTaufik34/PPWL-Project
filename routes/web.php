@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
-
 // User
 Route::get('/', function () {
     $products = Product::latest()->take(8)->get();
@@ -29,17 +28,24 @@ Route::middleware('auth')->group(function () {
     Route::resource('/products', ProductController::class);
     Route::resource('/categories', CategoryController::class);
 
+    //KERANGJANG PESANANAN
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/cart/update/{product}', [CartController::class, 'update'])
-    ->name('cart.update');
-    Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])
-    ->name('cart.remove');
+    Route::post('/cart/update/{product}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
 
+    //CHECKOUT
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [CheckoutController::class, 'process'])
-    ->name('checkout.process');
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::get('/checkout/sukses', [CheckoutController::class, 'sukses'])->name('checkout.sukses');
+    Route::put(
+        '/checkout/{order}/bukti-pembayaran',
+        [CheckoutController::class, 'updatePaymentProof']
+    )->name('checkout.updatePaymentProof');
 
+    // ORDERS
+    Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
+    Route::resource('/orders', OrderController::class);
 });
 
 require __DIR__ . '/auth.php';
