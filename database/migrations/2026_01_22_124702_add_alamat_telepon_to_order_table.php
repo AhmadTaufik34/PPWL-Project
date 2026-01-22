@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user');
-            $table->string('alamat')->nullable();
-            $table->string('telepon')->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('alamat', 255)->nullable();
+            $table->string('telepon', 20)->nullable();
         });
     }
 
@@ -23,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['role','alamat', 'telepon']);
+        Schema::table('order', function (Blueprint $table) {
+            Schema::dropIfExists('orders');
         });
     }
 };
